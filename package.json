@@ -1,12 +1,12 @@
 {
-  "name": "@ryus08/penguinserver",
+  "name": "@mindha-us/penguinserver",
   "version": "0.0.0",
   "description": "Back-end for monitoring applications and code progress",
   "license": "BSD-2-Clause",
   "author": "cimpress",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryus08/penguin-alarm-server.git"
+    "url": "https://github.com/mindha-us/penguin-alarm-server.git"
   },
   "dependencies": {
     "aws-sdk": "^2.1105.0",
