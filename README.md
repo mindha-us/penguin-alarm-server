@@ -7,14 +7,14 @@ This app runs on Nodejs 16.x. If you have that installed, `npm install` will dow
 
 ### Running with docker
 
-A docker image is published to ryus08/penguin-alarm-server. You can run this with `docker run ryus08/penguin-alarm-server`. 
+A docker image is published to `ghcr.io/mindha-us/penguin-alarm-server`. You can run this with `docker run -p 8080:8080 ghcr.io/mindha-us/penguin-alarm-server`. 
 
 ## Configuring
 
 This app uses the [node-config](https://github.com/node-config/node-config/wiki) library for configuration. You can set the environment variables specified in [./config/custom-environment-variables.yaml](./config/custom-environment-variables.yaml) to set the config values those correlate to. You can also add your own config files, such as local.yaml if you are running locally and don't want your config (especially secrets) checked in. If something doesn't have an environment variable override in custom-environment-variables.yaml, this is also a good way to configure your app. For example, if you have a config file called `local-production.yaml` (for usage when `NODE_ENV`=`production`), you could build your own docker image with this copied into the config directory with a Dockerfile as:
 
 ```
-FROM ryus08/penguin-alarm-server 
+FROM ghcr.io/mindha-us/penguin-alarm-server
 
 COPY ./local-production.yaml ./config/local-production.yaml
 ```
@@ -26,7 +26,7 @@ Then when you run your new docker image with NODE_ENV=production, your config fi
 See the files in the config directory for config options. Specifically, you'll probably want to set at least the following:
 
 * gitlabToken - A gitlab token to hydrate the local store of gitlab data
-* cors - A config for the [cors](https://github.com/expressjs/cors) package. It allows all origins by default, but you'll probably want to restrict it to wherever you're hosting [the UI](https://github.com/ryus08/pengiun-alarm-ui).
+* cors - A config for the [cors](https://github.com/expressjs/cors) package. It allows all origins by default, but you'll probably want to restrict it to wherever you're hosting [the UI](https://github.com/mindha-us/pengiun-alarm-ui).
 * authorization - Configuration for your authorization server.
   * authorization.requiredClaims - Any claims that are required by users to hit this service. This is an object where the keys are required claims and the values are list of valid values for those claims. If the list is empty, the user just needs to have the claim with any value. Since GitProvider AuthZ is not quite usable yet, this is the AuthZ option. See config/cimpress.yaml for an example
 * selfUrl - The URL you're hosting this server at
